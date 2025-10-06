@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dyq5ymbc7cfdc"]
+
+[ext_resource type="Script" uid="uid://c3crnc2s2fum" path="res://Characters/Player/Player.gd" id="1_ht6wf"]
+[ext_resource type="Shader" uid="uid://53ana8ikdfmh" path="res://Characters/Player/Shader.gdshader" id="2_6mep6"]
+[ext_resource type="Texture2D" uid="uid://1fib06m06x3y" path="res://Characters/Player/Textures/Circle.png" id="3_yeefy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yeefy"]
+radius = 16.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yeefy"]
+shader = ExtResource("2_6mep6")
+shader_parameter/from = ExtResource("3_yeefy")
+shader_parameter/to = ExtResource("3_yeefy")
+shader_parameter/t = 0.0
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/grow = false
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 6
+script = ExtResource("1_ht6wf")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_yeefy")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_yeefy")
+texture = ExtResource("3_yeefy")
+
+[node name="Camera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+zoom = Vector2(2, 2)
+
+[node name="Health" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+horizontal_alignment = 1
+vertical_alignment = 1
